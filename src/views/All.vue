@@ -13,19 +13,24 @@
 <script>
 // @ is an alias to /src
 import { TodosService } from "@/service/todos";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   name: 'all',
   async mounted() {
-    const res = await this.getAllTodos()
+    await this.getAllTodos()
+    // await this.fetchAll()
   },
   computed: {
     todos() {
       return this.$store.state.todos
-    }
+    },
+    // ...mapState(['todos'])
   },
   methods: {
     ...mapActions(['getAllTodos']),
+    // fetchAllTodos() {
+    //   this.$store.dispatch('getAllTodos')
+    // }
   }
 }
 </script>

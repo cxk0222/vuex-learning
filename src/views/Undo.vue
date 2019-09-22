@@ -15,6 +15,7 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   async mounted() {
+    console.log('this', this)
     const res = await this.getAllTodos()
   },
   computed: {
