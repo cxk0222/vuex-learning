@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">All</router-link> |
+      <router-link to="/undo">Undo</router-link> |
+      <router-link to="/done">Done</router-link>
     </div>
     <router-view/>
   </div>
@@ -25,5 +26,8 @@
       color: #42b983;
     }
   }
+}
+.cursor-pointer {
+  cursor: pointer;
 }
 </style>
