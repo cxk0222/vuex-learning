@@ -31,6 +31,7 @@ export default new Vuex.Store({
     },
     syncCheckedTodos({ commit }, checkedTodos) {
       console.log('checkedTodos', checkedTodos)
+      // 正常情况下会发送请求同步服务器端的数据
       commit('syncCheckedTodos', checkedTodos)
     }
   }
