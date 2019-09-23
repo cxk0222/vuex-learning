@@ -7,26 +7,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     todos: [],
-  },
-  getters: {
-    doneTodos(state) {
-      return state.todos.filter(todo => todo.done)
-    },
-    undoTodos(state) {
-      return state.todos.filter(todo => !todo.done)
-    },
+    checkedTodos: [],
   },
   mutations: {
     setTodos(state, todos) {
       state.todos = todos
     },
-    makeTodoDone(state, uuid) {
-      let todo = state.todos.find(todo => todo.uuid === uuid)
-      todo.done = true
-    },
-    undoTodo(state, uuid) {
-      let todo = state.todos.find(todo => todo.uuid === uuid)
-      todo.done = false
+    syncCheckedTodos(state, checkedTodos) {
+      state.checkedTodos = checkedTodos
     }
   },
   actions: {
@@ -41,11 +29,9 @@ export default new Vuex.Store({
         return { ok: false, error: res.error }
       }
     },
-    makeTodoDone({ commit }, uuid) {
-      commit('makeTodoDone', uuid)
-    },
-    undoTodo({ commit }, uuid) {
-      commit('undoTodo', uuid)
+    syncCheckedTodos({ commit }, checkedTodos) {
+      console.log('checkedTodos', checkedTodos)
+      commit('syncCheckedTodos', checkedTodos)
     }
   }
 })

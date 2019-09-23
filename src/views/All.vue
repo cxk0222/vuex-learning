@@ -1,8 +1,9 @@
 <template>
   <div class="all">
-    <div class="todos-container">
+    <div class="todos-container border-gray">
       <ul>
-        <li v-for="(todo, index) in todos" :key="index" :class="{'is-done': todo.done}">
+        <li v-for="(todo, index) in todos" :key="index">
+          <input type="checkbox" v-model="localCheckedTodos" :value="todo.id">
           {{ todo.text }} 
         </li>
       </ul>
@@ -18,31 +19,21 @@ export default {
   name: 'all',
   async mounted() {
     await this.getAllTodos()
-    // await this.fetchAll()
+    this.localCheckedTodos = this.checkedTodos
+  },
+  async beforeDestroy() {
+    this.syncCheckedTodos(this.localCheckedTodos)
+  },
+  data() {
+    return {
+      localCheckedTodos: [],
+    }
   },
   computed: {
-    todos() {
-      return this.$store.state.todos
-    },
-    // ...mapState(['todos'])
+    ...mapState(['todos', 'checkedTodos'])
   },
   methods: {
-    ...mapActions(['getAllTodos']),
-    // fetchAllTodos() {
-    //   this.$store.dispatch('getAllTodos')
-    // }
+    ...mapActions(['getAllTodos', 'syncCheckedTodos']),
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.todos-container {
-  width: 300px;
-  margin: 10px auto 0;
-  border: 1px solid gray;
-  text-align: left;
-}
-.is-done {
-  text-decoration: line-through;
-}
-</style>

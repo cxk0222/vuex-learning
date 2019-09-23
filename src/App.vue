@@ -17,6 +17,9 @@
   text-align: center;
   color: #2c3e50;
 }
+ul {
+  list-style: none;
+}
 #nav {
   padding: 30px;
   a {
@@ -29,5 +32,19 @@
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.todos-container {
+  width: 300px;
+  margin: 10px auto 0;
+  text-align: left;
+}
+.border-green {
+  border: 1px solid green;
+}
+.border-red {
+  border: 1px solid red;
+}
+.border-gray {
+  border: 1px solid gray;
 }
 </style>
